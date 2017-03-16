@@ -9,12 +9,8 @@ image_resource:
 inputs:
 - name: metadataproxy
 - name: metadataproxy-build
-run:
-  path: docker
-  args:
-  - build
-  - -t
-  - lyft/metadataproxy
-  - metadataproxy
+
+outputs:
+- name: 
   
 

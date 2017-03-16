@@ -1,0 +1,28 @@
+resources:
+- name: metadataproxy
+  type: git
+  source:
+    uri: https://github.com/chillibean/metadataproxy
+    branch: logging
+    
+- name: metadataproxy-build
+  type: git
+  source:
+    uri: https://github.com/carolinebeauchamp/metadataproxy-build
+
+- name: metadataproxy-image
+  type: docker-image
+  source:
+    repository: 194271732102.dkr.ecr.eu-west-1.amazonaws.com/lyft/metadataproxy
+    aws_access_key_id: {{aws-username}}
+    aws_secret_access_key: {{aws-password}}
+    
+jobs:
+- name: metadataproxy-build-image
+  plan:
+  - get: metadataproxy
+  - get: metadataproxy-build
+  - put: metadataproxy-image
+    params:
+      build: metadataproxy
+      
